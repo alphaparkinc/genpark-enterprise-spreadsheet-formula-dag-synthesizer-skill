@@ -1,0 +1,41 @@
+{
+  "name": "genpark-enterprise-spreadsheet-formula-dag-synthesizer-skill",
+  "version": "1.0.0",
+  "description": "Enterprise Spreadsheet Financial Model & Formula DAG Synthesizer (inspired by Tencent WorkBuddy Goal-to-Excel Workflows). Synthesizes multi-tab financial models, detects circular references, compiles formula dependency DAGs (SUMIFS, XLOOKUP, CAGR, NPV), and evaluates deterministic preview cell matrices.",
+  "tools": [
+    {
+      "name": "synthesize_spreadsheet_formula_dag",
+      "description": "Enterprise goal-to-spreadsheet synthesis: define multi-tab models, compile formula dependency DAGs, detect circular reference deadlocks, and evaluate deterministic cell value matrices.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "compile_spreadsheet_model",
+              "detect_circular_references",
+              "evaluate_cell_dag",
+              "export_csv_matrix"
+            ],
+            "description": "Spreadsheet synthesis action."
+          },
+          "model_name": {
+            "type": "string",
+            "description": "Financial or operational model name."
+          },
+          "cell_definitions": {
+            "type": "object",
+            "description": "Dictionary of cell coordinates to formula or scalar values (e.g. {'A1': 100, 'A2': '=A1*1.2'})."
+          },
+          "tab_name": {
+            "type": "string",
+            "description": "Active worksheet tab."
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  ]
+}
